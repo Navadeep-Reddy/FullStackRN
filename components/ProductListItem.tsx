@@ -1,10 +1,16 @@
 import { StyleSheet, View, Text, Image, SafeAreaView } from 'react-native';
+import {Product} from '../constants/types';
 
-export default function ProductListItem({product}) {
+export const defaultPizzaImg = 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png'
+type ProductListItemProps = {
+  product: Product;
+}
+
+export default function ProductListItem({product}: ProductListItemProps) {
     console.log(product)
     return (
       <View style={styles.container}>
-        <Image source={{uri: product.image}} style={styles.image}/>
+        <Image source={{uri: product.image || defaultPizzaImg}} style={styles.image}/>
         <Text style={styles.title}>{product.name}</Text>
         <Text style={styles.price}>${product.price}</Text>
       </View>
@@ -13,9 +19,11 @@ export default function ProductListItem({product}) {
 
   const styles = StyleSheet.create({
     container : {
-      backgroundColor: 'gray',
+      backgroundColor: 'white',
       padding: 10,
       borderRadius: 20,
+      flex: 1,
+      maxWidth: '50%'
     },
     title : {
       fontWeight: '600',

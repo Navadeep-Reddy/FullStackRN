@@ -1,36 +1,17 @@
-import { StyleSheet, View, Text, Image } from 'react-native';
-import products from '../../assets/data/products';
+import { StyleSheet, View, Text, Image, SafeAreaView, FlatList } from 'react-native';
+import products from '@/assets/data/products';
+import ProductListItem from '@/components/ProductListItem';
 
-const product = products[0];
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Image source={{uri: product.image}} style={styles.image}/>
-      <Text style={styles.title}>{product.name}</Text>
-      <Text style={styles.price}>${product.price}</Text>
-    </View>
-  );
+const TabOneScreen = () => {
+  return(
+    <SafeAreaView>
+    {/* <ProductListItem product={products[0]} />
+    <ProductListItem product={products[1]} /> */}
+      <FlatList data={products} renderItem={({item}) => <ProductListItem product={item}  />} numColumns={2} contentContainerStyle={{gap: 10, padding: 10}} columnWrapperStyle={{gap:10}}/>
+    </SafeAreaView>
+  )
 }
 
-const styles = StyleSheet.create({
-  container : {
-    backgroundColor: 'gray',
-    padding: 10,
-    borderRadius: 20,
-  },
-  title : {
-    fontWeight: '600',
-    fontSize: 18,
-    marginVertical: 10,
-    
-  },
-  price : {
-    fontWeight: 'bold',
-    color: '#0a7ea4',
-  },
-  image: {
-    width: '100%',
-    aspectRatio: 1,
-  }
-});
+export default TabOneScreen;
+
