@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, Image, SafeAreaView, Pressable } from 'react-native';
+import { Link } from 'expo-router';
 import {Product} from '../constants/types';
 
 export const defaultPizzaImg = 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png'
@@ -9,11 +10,13 @@ type ProductListItemProps = {
 export default function ProductListItem({product}: ProductListItemProps) {
     console.log(product)
     return (
-      <View style={styles.container}>
-        <Image source={{uri: product.image || defaultPizzaImg}} style={styles.image}/>
-        <Text style={styles.title}>{product.name}</Text>
-        <Text style={styles.price}>${product.price}</Text>
-      </View>
+      <Link href="/1" asChild>
+        <Pressable style={styles.container}>
+          <Image source={{uri: product.image || defaultPizzaImg}} style={styles.image}/>
+          <Text style={styles.title}>{product.name}</Text>
+          <Text style={styles.price}>${product.price}</Text>
+      </Pressable>
+      </Link>
     );
   }
 
